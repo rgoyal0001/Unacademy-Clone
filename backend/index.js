@@ -6,23 +6,35 @@ const cors = require("cors");
 const app = express();
 
 const {courseRouter} = require("./routes/course")
+const {userRouter} = require("./routes/user")
+const {goalRouter} = require("./routes/goal")
+
+
 app.use(cors());
 app.use(express.json());
 app.use(logger);
+app.use(setReqContext)
 app.use(courseRouter);
+app.use(userRouter);
+app.use(goalRouter);
 
 
 async function connectDatabase(){
 
     try{
 
-      let res = await mongoose.connect(process.env.DBURL)
+      let result = await mongoose.connect(process.env.DBURL)
+       console.log(result)
       console.log("Connected")
 
+    //   await mongoose.close();
+
     }catch(err){
+         console.log(err)
        console.log("not connected")
     }
 }
+
 
 
 
@@ -32,10 +44,19 @@ function logger(req , res , next){
     next();
 }
 
+function setReqContext(req, res, next) {
+    req.context = {
+        // user will be present for authenticated routes
+    }
+    next();
+
+}
+
+
 const PORT = process.env.PORT || 8080
 
 connectDatabase().then(() => {
-    app.listen(8080 , () => {
+    app.listen(PORT , () => {
         console.log(`server is listening at ${PORT}`)
     })
 })
