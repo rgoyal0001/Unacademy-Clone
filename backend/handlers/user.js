@@ -1,10 +1,11 @@
 const {userModel} = require("../database/user");
+const {goalModel} = require("../database/goal");
 const {SECRET} = require("../constants")
 const jwt = require('jsonwebtoken');
-  console.log(userModel)
+  
 
 async function registerUser(req , res , next){
-    console.log(req.body);
+    
     const {user} = req.body;
     let existingUser = await userModel.findOne({ $or : [{
           email : user.email} , {mobile : user.mobile}]})
@@ -16,6 +17,11 @@ async function registerUser(req , res , next){
               error : "User already registered"     
             })
     }
+  
+    let goals = await goalModel.find();
+    
+
+     user.goals = goals
 
    let userDoc =  await userModel.create(user);
     
@@ -74,6 +80,37 @@ async function loginUser(req , res , next){
    }
 }
 
+async function updateUser(req , res , next){
+       try{
+          const {id} = req.params;
+          const {title} = req.body;
+          let getUser = await userModel.findById(id);
+
+         let goals = getUser.goals.map((goal)=> {
+                 if(goal.title === title){
+                    return {...goal , subscription : true}
+                 }else {
+                      return {...goal}
+                 }
+          })
+     
+          getUser.goals = goals
+          
+        console.log(getUser);
+       await getUser.save();
+  
+        return res.status(200).send({
+            message : "user been updated",
+            user : getUser
+        })
+
+       }catch(err){
+           return res.status(404).send({
+               error : "something went wrong"
+           })
+       }
+}
+
 async function getLoggedInUser(req , res , next){
       const {context} = req;
       if(!context.user){
@@ -118,5 +155,6 @@ module.exports = {
       registerUser, 
       loginUser,
       getLoggedInUser,
-       getUser
+       getUser,
+       updateUser
 }

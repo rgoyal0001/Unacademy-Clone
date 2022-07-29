@@ -1,6 +1,5 @@
 const {courseModel} = require("../database/course");
 
-console.log(courseModel);
 async function getAllCourse(req , res , next){
     try{
 

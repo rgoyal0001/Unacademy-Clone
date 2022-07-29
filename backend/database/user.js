@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
         mobile : {
             type : String,
             required : true
+        },
+        goals : {
+             type : Array,
+             default : []
         }
         
 },{
