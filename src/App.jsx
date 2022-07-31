@@ -16,16 +16,18 @@ import Login from './pages/LogIn/login';
 import LoginEmail from './pages/LogIn/loginEmail';
 import Register from './pages/Register/Register';
 import { Explore } from './components/Explore';
+import  {Subscription} from "./components/Subscription";
 
 function App() {
   return (
      //<ChakraProvider theme={theme}>
-      
       <Routes>
         <Route path = "/explore"  element= {<Explore/>}></Route>
         <Route path='/login/phone' element={<Login />}></Route>
         <Route path='/login' element={<LoginEmail />}></Route>
         <Route path='/register' element={<Register />}></Route>
+        <Route path = "/goal/:title"  element= {<explore/>}></Route>
+        <Route path = "/goal/subscription/:title"  element= {<Subscription/>}></Route>
       </Routes>
     //  </ChakraProvider> 
   );
