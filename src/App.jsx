@@ -17,6 +17,7 @@ import LoginEmail from './pages/LogIn/loginEmail';
 import Register from './pages/Register/Register';
 import { Explore } from './components/Explore';
 import  {Subscription} from "./components/Subscription";
+import {Goal} from './pages/Goal/Goal';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path = "/goal/:title"  element= {<explore/>}></Route>
         <Route path = "/goal/subscription/:title"  element= {<Subscription/>}></Route>
+        <Route path='/goal' element={<Goal />}></Route>
       </Routes>
     //  </ChakraProvider> 
   );
