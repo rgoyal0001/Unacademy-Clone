@@ -6,7 +6,7 @@
 
 .parentBox > *:nth-child(1){
      width : 30%;
-     border : 1px solid red;
+     /* border : 1px solid red; */
 
 }
 

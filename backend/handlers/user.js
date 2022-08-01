@@ -18,10 +18,10 @@ async function registerUser(req , res , next){
             })
     }
   
-    let goals = await goalModel.find();
+    // let goals = await goalModel.find();
     
 
-     user.goals = goals
+    //  user.goals = goals
 
    let userDoc =  await userModel.create(user);
     
@@ -63,7 +63,7 @@ async function loginUser(req , res , next){
                         token: encryptedToken
                 })
           }else {
-               return res.status({ 
+               return res.status(404).send({ 
                    error : "Password does not match"
                })
           }
@@ -83,18 +83,20 @@ async function loginUser(req , res , next){
 async function updateUser(req , res , next){
        try{
           const {id} = req.params;
-          const {title} = req.body;
+          const {title , details} = req.body;
           let getUser = await userModel.findById(id);
 
-         let goals = getUser.goals.map((goal)=> {
-                 if(goal.title === title){
-                    return {...goal , subscription : true}
-                 }else {
-                      return {...goal}
-                 }
-          })
+          console.log(getUser)
+
+        //  let goals = getUser.goals.map((goal)=> {
+        //          if(goal.title === title){
+        //             return {...goal , subscription : true}
+        //          }else {
+        //               return {...goal}
+        //          }
+        //   })
      
-          getUser.goals = goals
+          getUser.subscription.push({title , details}) 
           
         console.log(getUser);
        await getUser.save();

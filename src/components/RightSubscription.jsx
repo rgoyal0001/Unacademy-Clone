@@ -1,16 +1,28 @@
 import React from "react";
 import "../styles/RightSubscription.css";
 import {IoIosCheckmark} from 'react-icons/io';
-import {useParams}  from "react-router-dom";
+import {useParams , useNavigate}  from "react-router-dom";
+import {PaymentContext} from "../Context/payment/PaymentContext"
+
 
 
 export function RightSubscription(){
      let {title} = useParams();
+     const navigate = useNavigate();
 
      const [viewAll , setViewAll] = React.useState(true);
      const [referralInput , setReferralInput] = React.useState("");
+
     const [priceBox , setPriceBox] = React.useState({
-        activeObject : null,
+        activeObject :   {id : 2,
+            title : "12 months",
+            price : "₹1,248 /mo",
+            total : "Total ₹14,974",
+            save : "SAVE 61%",
+            extra : "You get 3 months extra for free",
+            logo : "https://static.uacdn.net/production/_next/static/images/discount.svg",
+            expire : "Offer expires 31 Jul 2022"
+        } , 
         objects : [
             {id : 1,
              title : "24 months",
@@ -69,6 +81,12 @@ export function RightSubscription(){
         ]
     })
 
+    let {setProceed , setTitle ,setDetails} = React.useContext(PaymentContext);
+
+     setTitle(title)
+     setDetails(priceBox.activeObject)
+
+
     let arrayMap = viewAll?priceBox.objects.slice(0 , 3):priceBox.objects
 
     function toggleActive(index){
@@ -78,13 +96,28 @@ export function RightSubscription(){
     }
 
     function toggleClassName(index){
-        if(priceBox.objects[index] === priceBox.activeObject){
+        if(priceBox.objects[index].id === priceBox.activeObject.id){
+             
               return "box active"
         }else {
               return "box inactive"
         }
 
     }
+
+
+    function navigateToPayment(){
+     let token = localStorage.getItem("token")
+
+     if(token){
+          navigate("/goal/payment")
+     }else {
+          setProceed(true);
+          navigate("/login")
+     }
+
+    }
+
     return(
           <div>
             <h1 style = {{"fontSize" : "30px" , "fontWeight" : "500" , "textAlign" : "center" , "margin-bottom" : "10px"}}>{`${title} subscription`}</h1>
@@ -98,7 +131,7 @@ export function RightSubscription(){
             <div className = "monthContainer">
                    {
                       arrayMap.map((ele , index) => (
-                           <div key = {index} className = {toggleClassName(index)} onClick = {() => toggleActive(index)}>
+                           <div key = {index}  className = {toggleClassName(index)} onClick = {() => toggleActive(index)}>
                                    <div className = "upperChild">
                                           <div style = {{"width" : "28px" , "height" : "30px", "border" : "2px solid rgb(241, 243, 250)" , "borderRadius" : "50%" , }}>
                                              <IoIosCheckmark style = {{"fontSize" : "27px" , "color" : "white" , "marginBottom" : "5px" , }}/>
@@ -135,7 +168,7 @@ export function RightSubscription(){
                         </div>
                          <input placeholder = "Have a referral code?" value = {referralInput} onChange = {(e) => {setReferralInput(e.target.value)}} style = {{"paddingLeft" : "10px" , "marginLeft" : "10px" , "height" : "70%" , "border" : "1px solid rgb(241, 243, 250)" , "borderRadius" : "5px"}}/>
                  </div>
-                 <div style = {{"width" : "150px" ,"background":"#08BD80","fontSize" : "13px","textAlign" : "center" ,"cursor" : "pointer" , "padding" : "10px" , "color" : "white" , "borderRadius" : "5px" , "margin" : "auto" , "border" : "1px solid rgb(241, 243, 250)"}}>Proceed to pay</div>
+                 <div style = {{"width" : "150px" ,"background":"#08BD80","fontSize" : "13px","textAlign" : "center" ,"cursor" : "pointer" , "padding" : "10px" , "color" : "white" , "borderRadius" : "5px" , "margin" : "auto" , "border" : "1px solid rgb(241, 243, 250)"}} onClick = {navigateToPayment}>Proceed to pay</div>
             </div>
 
       </div>

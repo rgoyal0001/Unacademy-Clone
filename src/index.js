@@ -5,15 +5,19 @@ import App from './App.jsx';
 import {BrowserRouter} from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import {PaymentContextProvider} from "./Context/payment/PaymentContext";
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 root.render(
-  <BrowserRouter>
+  <PaymentContextProvider>
+     <BrowserRouter>
     {/* <ColorModeScript /> */}
     <App />
   </BrowserRouter>
+  </PaymentContextProvider>
+  
   
  
 );
