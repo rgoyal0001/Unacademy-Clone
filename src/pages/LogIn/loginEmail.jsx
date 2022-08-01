@@ -3,13 +3,19 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import {LoginContext} from '../../Context/Login/LoginContext';
 import { useNavigate } from 'react-router-dom';
-import PhoneInput from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input';
+import {PaymentContext} from "../../Context/payment/PaymentContext";
+import {Spinner , Center ,ChakraProvider} from "@chakra-ui/react";
 import 'react-phone-number-input/style.css'
 
 function Login() {
  const [email, setEmail] = React.useState('');
  const [password, setPassword] = React.useState('');
+ const [loading , setLoading] = React.useState(false);
+ const [error , setError] = React.useState(false);
   // const {setUser} = React.useContext(LoginContext);
+
+  let {proceed} = React.useContext(PaymentContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -21,6 +27,7 @@ function Login() {
     }
     // console.log(body);
     try {
+         setLoading(true)
       let data = await fetch('https://unacadmey-test-app.herokuapp.com/login',{
         method: 'POST',
         headers: {
@@ -29,18 +36,60 @@ function Login() {
         body: JSON.stringify(body)
       })
       let response = await data.json();
+        setLoading(false)
       // console.log(token);
+       console.log(response)
+      if(response.error) {
+        return alert(response.error)
+    }
       alert('login success');
       let token = response.token;
       localStorage.setItem('token', token);
       // setUser(token);
-      navigate('/');
+
+       if(proceed){
+          console.log(proceed);
+      navigate("/goal/payment")
+      }else {  
+        navigate('/explore');
+      }
       
 
     } catch (error) {
+        setError(true)
       console.log(error);
     }
   }
+
+
+
+  if(loading){
+    return(
+          <ChakraProvider>
+             <Center mt = "250px">
+                  <Spinner thickness='5px'
+                           speed='1.5s'
+                        //    emptyColor='green.200'
+                           color='blue.500'
+                           size='xl'/>
+          </Center>
+          </ChakraProvider>
+            
+    )
+}
+
+if(error){
+    return(
+          <ChakraProvider>
+                <h1 
+              textAlign = "center" 
+              marginTop = "200px"
+              color = "red"
+          >Something Went Wrong...</h1>
+          </ChakraProvider>
+         
+    )
+}
 
   return (
     <div className='login'>

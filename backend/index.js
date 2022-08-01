@@ -24,7 +24,7 @@ async function connectDatabase(){
     try{
 
       let result = await mongoose.connect(process.env.DBURL)
-       console.log(result)
+    //    console.log(result)
       console.log("Connected")
 
     //   await mongoose.close();

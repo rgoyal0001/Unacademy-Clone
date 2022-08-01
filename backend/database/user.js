@@ -18,10 +18,11 @@ const userSchema = new mongoose.Schema({
             type : String,
             required : true
         },
-        goals : {
-             type : Array,
-             default : []
+        subscription :{
+              type : Array,
+              default : []
         }
+            
         
 },{
     timeStamps : true
