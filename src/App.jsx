@@ -34,7 +34,6 @@ function App() {
       <Route path="/goal/subscription/:title" element={<Subscription />}></Route>
       <Route path='/goals/full-stack-development' element={<Goals />}></Route>
       <Route path='/goal/payment' element={<Payment />}></Route>
-
       <Route path='/goal/:title' element={<Goal />}></Route>
 
 
