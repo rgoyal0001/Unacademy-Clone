@@ -24,7 +24,7 @@ function App() {
      //<ChakraProvider theme={theme}>
       
       <Routes>
-        <Route path = "/explore"  element= {<Explore/>}></Route>
+        <Route path = "/"  element= {<Explore/>}></Route>
         <Route path='/login/phone' element={<Login />}></Route>
         <Route path='/login' element={<LoginEmail />}></Route>
         <Route path='/register' element={<Register />}></Route>

@@ -47,7 +47,7 @@ export const Goal = () => {
               </button>
             </a>
             <h1 id="heading">
-              Creck {goalData?.title} with India's largest learning platform
+              Crack {goalData?.title} with India's largest learning platform
             </h1>
             <h3>
             Get Plus subscription and access unlimited live and recorded courses from India's best educators
