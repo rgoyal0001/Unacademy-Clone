@@ -94,7 +94,7 @@ function Login() {
         <p>12 months</p>
         <div style={{"display":"flex","justifyContent":"space-between"}}>
           <p>Valid till 27 Jul, 2023</p>
-          <p >Change duration</p>
+          {/* <Link to="">Change duration</p> */}
         </div>
 
         <div>
