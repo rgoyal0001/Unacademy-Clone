@@ -4,9 +4,9 @@ import { AppStoreLogo } from './AppStoreLogo';
 import { PlayStoreLogo } from './PlayStoreLogo';
 import { FooterComponents } from './FooterComponents';
 
-export const Footer = () => {
+export const Footer = (props) => {
     return (
-        <Box width="100%" margin="auto" backgroundColor="#FFFFFF" marginTop="40px" padding="80px 0px 40px 0px">
+        <Box opacity={props.opacity} width="100%" margin="auto" backgroundColor="#FFFFFF" marginTop="40px" padding="80px 0px 40px 0px">
             <Box maxWidth="1136px" width="100%" margin="auto">
                 <Box display=" grid" gridTemplateColumns="repeat(24,1fr)"
                     gridColumnGap=" 16px"
