@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Register.css'
 import { useNavigate } from 'react-router-dom';
+import {Spinner , Center ,ChakraProvider} from "@chakra-ui/react";
 
 
 async function register(body) {
@@ -28,16 +29,25 @@ function Register() {
   const [password, setPassword] = React.useState('');
   const [name, setName] = React.useState('');
   const [mobile, setMobile] = React.useState('');
+  const [loading , setLoading] = React.useState(false);
+  const [error , setError] = React.useState(false);
   const navigate = useNavigate();
 
   const handleRegister =  (e) => {
     e.preventDefault();
+    setLoading(true)
     register({name,email,password,mobile})
-    .then(()=>{
+    .then((res)=>{
+       if(res.error) {
+           return alert(res.error)
+       }
       alert("Registration successful")
     })
     .catch(err=>{
-      alert(err.message)
+        setError(true)
+    })
+    .finally(() => {
+         setLoading(false)
     })
   }
 
@@ -65,6 +75,37 @@ function Register() {
   //   }
 
   // }
+
+  if(loading){
+    return(
+          <ChakraProvider>
+             <Center mt = "250px">
+                  <Spinner thickness='5px'
+                           speed='1.5s'
+                        //    emptyColor='green.200'
+                           color='blue.500'
+                           size='xl'/>
+          </Center>
+          </ChakraProvider>
+            
+    )
+}
+
+if(error){
+    return(
+          <ChakraProvider>
+                <h1 
+              textAlign = "center" 
+              marginTop = "200px"
+              color = "red"
+          >Something Went Wrong...</h1>
+          </ChakraProvider>
+         
+    )
+}
+
+
+
   return (
     <div className="register">
     <div className='left'>

@@ -5,10 +5,10 @@ const goalSchema = new mongoose.Schema({
         type : String,
          required : true
     },
-    subscription : {
-        type : Boolean,
-        default : false
-    },
+    // subscription : {
+    //     type : Boolean,
+    //     default : false
+    // },
     youWillGet : [ { 
         title : String,
         text : String,

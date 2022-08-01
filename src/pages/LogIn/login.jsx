@@ -1,14 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './Login.css';
-import {LoginContext} from '../../Context/Login/LoginContext';
+// import {LoginContext} from '../../Context/Login/LoginContext';
 import { useNavigate } from 'react-router-dom';
-import PhoneInput from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input';
+import {PaymentContext} from "../../Context/payment/PaymentContext"
 import 'react-phone-number-input/style.css'
 
 function Login() {
  const [mobile, setMobile] = React.useState();
  const [password, setPassword] = React.useState();
+ const [loading , setLoading] = React.useState(false);
+ const [error , setError] = React.useState(false);
+
+ let {proceed} = React.useContext(PaymentContext);
+
+   console.log(proceed)
   // const {setUser} = React.useContext(LoginContext);
   const navigate = useNavigate();
 
@@ -30,13 +37,24 @@ function Login() {
       })
       let response = await data.json();
       // console.log(token);
+      console.log(response);
+      if(response.error) {
+        return alert(response.error)
+    }
+     
       alert('login success');
       let token = response.token;
       localStorage.setItem('token', token);
       // setUser(token);
-        navigate('/');
-      
+    
 
+      if(proceed === true){
+          console.log(proceed);
+          navigate("/goal/payment")
+      }else {  
+        navigate('/explore');
+      }
+      
     } catch (error) {
       console.log(error);
     }
