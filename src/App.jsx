@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route,Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import {
   ChakraProvider,
   Box,
@@ -19,14 +19,15 @@ import { Explore } from './components/Explore';
 
 function App() {
   return (
-     //<ChakraProvider theme={theme}>
-      
-      <Routes>
-        <Route path = "/explore"  element= {<Explore/>}></Route>
-        <Route path='/login/phone' element={<Login />}></Route>
-        <Route path='/login' element={<LoginEmail />}></Route>
-        <Route path='/register' element={<Register />}></Route>
-      </Routes>
+    //<ChakraProvider theme={theme}>
+
+    <Routes>
+      <Route path="/explore" element={<Explore />}></Route>
+      <Route path='/login/phone' element={<Login />}></Route>
+      <Route path='/login' element={<LoginEmail />}></Route>
+      <Route path='/register' element={<Register />}></Route>
+      {/* <Route path="/goal/:title" element={<Goal />}></Route> */}
+    </Routes>
     //  </ChakraProvider> 
   );
 }
