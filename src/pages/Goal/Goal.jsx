@@ -47,13 +47,13 @@ export const Goal = () => {
               </button>
             </a>
             <h1 id="heading">
-              Creck {goalData?.title} with India's largest learning platform
+              Crack {goalData?.title} with India's largest learning platform
             </h1>
             <h3>
             Get Plus subscription and access unlimited live and recorded courses from India's best educators
 
             </h3>
-            <Link to="/plans">
+            <Link to={`/goal/subscription/${goalData?.title}`}>
               <button className="first-box-item2-2-btn">
                 Get subscription
               </button>
@@ -149,7 +149,7 @@ export const Goal = () => {
           </div>
         </div>
         <div className="free-classes-educators-list">
-        {freeClass.map((el, index) => {
+        {freeClass.map((el) => {
           return (
             <div className="educator">
               <div className="educator-image">

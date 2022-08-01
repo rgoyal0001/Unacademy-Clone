@@ -24,7 +24,6 @@ export const CourseGroup = ({ index, el }) => {
                                 <Box><Text fontWeight="600" fontSize="14px" lineHeight="150%" margin="0px">{e.title}</Text></Box>
 
                             </Box>
-
                         )
                     })
                 }

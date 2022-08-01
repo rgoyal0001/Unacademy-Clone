@@ -11,12 +11,15 @@ const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
 
 root.render(
-  <PaymentContextProvider>
+  
      <BrowserRouter>
     {/* <ColorModeScript /> */}
-    <App />
+    
+    <PaymentContextProvider>
+      <App />
+    </PaymentContextProvider>
   </BrowserRouter>
-  </PaymentContextProvider>
+  
   
   
  

@@ -52,7 +52,7 @@ function Login() {
           console.log(proceed);
           navigate("/goal/payment")
       }else {  
-        navigate('/explore');
+        navigate('/');
       }
       
     } catch (error) {

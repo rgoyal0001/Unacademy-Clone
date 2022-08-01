@@ -113,7 +113,7 @@ function handleSubmit(e){
 
 const handleClose = () => {  
             onClose();
-            navigate("/explore")
+            navigate("/")
 }
 
 

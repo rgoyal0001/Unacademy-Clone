@@ -51,7 +51,7 @@ function Login() {
           console.log(proceed);
       navigate("/goal/payment")
       }else {  
-        navigate('/explore');
+        navigate('/');
       }
       
 
@@ -99,7 +99,7 @@ if(error){
           or <Link to='/register' style={{"color":"rgb(29, 177, 29) ","fontWeight":"650"}}>create your account</Link>
           <br />
           <div id='input' >
-            <input type="text" name="email" placeholder='Enter yoour email' value={email} onChange={(e)=>{setEmail(e.target.value)}} /> <br />
+            <input type="text" name="email" placeholder='Enter your email' value={email} onChange={(e)=>{setEmail(e.target.value)}} /> <br />
             <input type="password" name="password" placeholder='Enter password' value={password} onChange={(e)=>{setPassword(e.target.value)}} />
           </div>
           <div id='login-button' style={{"display":"flex","justifyContent":"space-between","alignItems":"center"}}>
