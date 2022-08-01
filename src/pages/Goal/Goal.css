@@ -164,38 +164,175 @@
   .pricing-item2 h4 {
     color: green;
   }
-  /* ...Third section */
+  .notification-image{
+    width: 80%;
+    margin: 5rem auto;
+    
+  }
+  .notification-image img{
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* free classes */
+  .free-classes{
+    width: 75%;
+    margin: 8rem auto;
+  }
+  .free-classes-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .free-classes-header > div > a{
+    color: rgb(70, 182, 104);
+    font-weight: 700;
+    font-size: 120%;
+    text-decoration: underline dashed;
+  }
+  .free-classes-educators-list{
+    display: flex;
+    gap: 2rem;
+    
+    overflow: scroll;
+    margin: 3rem auto;
+  }
+  .free-classes-educators-list::-webkit-scrollbar{
+    display: none;
+  }
+  .educator{
+    margin: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .educator-image {
+    margin: 2px;
+
+  }
+  .educator-image img{
+    border-radius: 4px;
+    width: 17rem;
+  }
+  
+  .educator-details{
+    margin: 8%;
+  }
+
+  .top-educators{
+    width: 80%;
+    margin: auto;
+  }
+  .top-educators-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  .top-educators-header > div > a{
+    color: rgb(70, 182, 104);
+    font-weight: 700;
+    font-size: 120%;
+    text-decoration: underline dashed;
+  }
+  .top-educators-list{
+    display: flex;
+    gap: 2rem;
+    overflow: scroll;
+    margin: 3rem auto;
+  }
+  .top-educators-list::-webkit-scrollbar{
+    display: none;
+  }
+  .topEducator{
+    display: flex;
+    width: 200px;
+    border: 1px solid red;
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  .topEducator > div{
+    border: 1px solid rgb(77, 69, 69);
+
+  }
+  .topEducator-image {
+  }
+  .topEducator-image img{
+    border-radius: 4px;
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .topEducator-details{
+    border: 1px solid rgb(43, 38, 38);
+
+  }
+
+ 
+
+
+
   .third-section > div {
     border-left: 72px solid transparent;
     border-right: 72px solid transparent;
   }
-  .third-section-first-box-item1 {
+  .third-section-first-box-item1-price {
     flex-grow: 1;
     max-width: 50%;
+    
   }
-  .third-section-first-box-item1 h1 {
+  .third-section-first-box-item1 a  {
+    position: sticky;
+
+    color: rgb(70, 182, 104);
+    /* font-weight: 700; */
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: .1rem;
+
+    left: 0;
+  }
+  .third-section-first-box-item1 a {
+    
+    /* border: 1px solid red; */
+
+    text-decoration: underline dashed rgb(70, 182, 104);
+  }
+  .third-section-first-box-item1 div {
     position: sticky;
     top: 0;
     font-weight: bold;
     font-size: 48px;
     line-height: 150%;
     color: #3c4852;
-    margin: 0px;
+    margin: 0 15%;
     line-height: 120%;
     font-size: 40px;
     text-align: center;
+    
   }
   .third-section-first-box-item2 {
+    max-width: 50%;
     flex-grow: 1;
   }
   .third-section-first-box-item2 h4 {
     font-weight: bold;
     font-size: 20px;
     line-height: 150%;
-    margin: 0px;
+    margin: 0 10%;
     font-size: 32px;
     margin-top: 40px;
+    text-align: center;
   }
+  .third-section-first-box-item2 p{
+    margin: 2% 20% 20% 20%;
+    text-align: center;
+  }
+
   .fourth-section {
     width: 100%;
     position: relative;
