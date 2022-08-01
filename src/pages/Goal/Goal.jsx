@@ -1,47 +1,37 @@
-// import React from "react";
-// import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
-// import { Box, Image, Button, Input, Heading, InputGroup, InputLeftElement, UnorderedList, ListItem, Text } from '@chakra-ui/react';
-// import left from './left.png';
-// import right from './right.png';
-// export const Goal=()=>{
-//     return(
-//         <div>
-//            <Box position="sticky" top="0px" left="0px" width="100%" height="72px" backgroundColor="#FFFFFF" boxShadow="inset 0px -1px 0px rgba(233, 238, 242, 0.4)" zIndex="2">
-//                 <Box width="1200px" margin="auto" padding="15px" display="flex" justifyContent="space-between" alignItems="center" height="100%" marginInline="auto" backgroundColor="transparent">
-//                     <Image src="https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&w=256"></Image>
-//                     <Button colorScheme="green" fontSize="sm" fontWeight="semibold">Login</Button>
-//                 </Box>
-//             </Box>
-//             <Box display="flex">
-//                 <Box width="30%">
-//                     <Image src={left}></Image>
-//                 </Box>
-//                 <Box textAlign="center" width="40%">            
-//                     <Button backgroundColor="rgb(17, 68, 177)" color="white" fontWeight="650" padding="12px" borderRadius="8px" border="none" cursor="pointer">Experience our 2021 recap</Button>
-
-//                     <Text fontSize="40px" fontWeight="700" color="rgb(84, 87, 101)" font-family= "system-ui">Crack IIT-JAM with India's largest learning platform</Text>
-//                     <Text fontSize="20px" font-family= "cursive">Get Plus subscription and access unlimited live and recorded courses from India's best educators</Text>
-
-//                     <Button backgroundColor="rgb(14, 199, 143)" color="white" fontSize="18px" fontWeight="700"  padding="20px" borderRadius="8px" border="none" cursor="pointer">Get subscription</Button>
-//                     <br />
-//                     <Button margin="1rem" backgroundColor="white" color="rgb(14, 199, 143)" fontSize="13px" fontWeight="650"  padding="20px" borderRadius="10px" border="none" cursor="pointer">View subscription offers</Button>
-                    
-//                 </Box>         
-//                 <Box width="30%">
-//                     <Image src={right}></Image>
-//                 </Box>
-//             </Box>
-
-//         </div>
-//     )
-// }
-
-
-
-import { Link } from "react-router-dom";
 import "./Goal.css";
+
+async function getGoal(title){
+  const response=await fetch(`https://unacadmey-test-app.herokuapp.com/goal/${title}`)
+  .catch((err)=>{
+    console.log(err)
+  });
+  const data =await response.json();
+  // const courseTitle=data.goal[0].title;
+  // console.log(data.goal[0].title)
+  console.log(data.goal[0].title)
+  return data;
+}
+
+
 export const Goal = () => {
+  const params=useParams();
+  const [goalData,setGoalData]=React.useState()
+  const [freeClass,setFreeClass]=React.useState([])
+  const [topEducator,setTopEducator]=React.useState([])
+
+  useEffect(()=>{
+    getGoal(params.title).then(response=>{
+      setGoalData(response.goal[0])
+      setFreeClass(response.goal[0].freeClases)
+      setTopEducator(response.goal[0].topEducators)
+      // console.log(response.goal[0].freeClases)
+      // console.log(response.goal[0])
+      // console.log("dcn",freeClass)
+    })
+  },[])
   return (
     <div id="container">
       <div className="first-box">
@@ -51,18 +41,17 @@ export const Goal = () => {
         <div className="first-box-item2">
           <div>
             <a href="/">
-              <button className="first-box-item2-1-btn" onClick="window.open('http://google.com');">
+              <button className="first-box-item2-1-btn">
                 <img src="https://static.uacdn.net/production/_next/static/images/winter-logo.svg?q=75&w=48" alt="" /> 
                 <p>Experience our 2021 recap</p>
               </button>
             </a>
             <h1 id="heading">
-              Learn Full Stack Development To Get Placed in Top Product
-              Companies
+              Creck {goalData?.title} with India's largest learning platform
             </h1>
             <h3>
-              Get Access to Live and Interactive Classes by India’s Top
-              Developers
+            Get Plus subscription and access unlimited live and recorded courses from India's best educators
+
             </h3>
             <Link to="/plans">
               <button className="first-box-item2-2-btn">
@@ -75,7 +64,6 @@ export const Goal = () => {
           <img alt="" src={require("./girl.svg").default} />
         </div>
       </div>
-      {/* .....Secons section...... */}
       <div className="second-section">
         <div>
           <h2>What you'll get</h2>
@@ -88,11 +76,8 @@ export const Goal = () => {
                 />
               </div>
               <div>
-                <h3>Daily Live Classes</h3>
-                <h5>
-                  Chat with your educator, engage in discussions, ask your
-                  doubts, and answer polls - all while the class is going on
-                </h5>
+                <h3>{goalData?.youWillGet[0].title}</h3>
+                <h5>{goalData?.youWillGet[0].text} </h5>
               </div>
             </div>
             <div className="second-section-card-item flex">
@@ -103,12 +88,8 @@ export const Goal = () => {
                 />
               </div>
               <div>
-                <h3>Capstone Project</h3>
-                <h5>
-                  Acquire hands-on Full Stack Development experience and get
-                  certified with the help of industry-grade guided projects
-                  wherein you develop the product from scratch
-                </h5>
+                <h3>{goalData?.youWillGet[1].title}</h3>
+                <h5>{goalData?.youWillGet[1].text} </h5>
               </div>
             </div>
             <div className="second-section-card-item flex">
@@ -119,12 +100,8 @@ export const Goal = () => {
                 />
               </div>
               <div>
-                <h3>Practice Platform</h3>
-                <h5>
-                  Enhance your skills with handpicked problems & assignments
-                  curated by industry experts from top companies like Google,
-                  Linkedin, and Microsoft
-                </h5>
+                <h3>{goalData?.youWillGet[2].title}</h3>
+                <h5>{goalData?.youWillGet[2].text} </h5>
               </div>
             </div>
             <div className="second-section-card-item flex">
@@ -135,19 +112,16 @@ export const Goal = () => {
                 />
               </div>
               <div>
-                <h3>Post class doubt support</h3>
-                <h5>
-                  Get all your doubts resolved by our expert panel of web
-                  developers and community members
-                </h5>
+                <h3>{goalData?.youWillGet[3].title}</h3>
+                <h5>{goalData?.youWillGet[3].text} </h5>
               </div>
             </div>
           </div>
           <div className="pricing">
             <div className="pricing-item1">
               <h4>
-                Full Stack Development subscription starts <br />
-                from <span>₹6,667/month</span>
+              {goalData?.title} subscription starts <br />
+                from <span>₹908/month</span>
               </h4>
             </div>
             <div className="pricing-item1">
@@ -158,12 +132,80 @@ export const Goal = () => {
           </div>
         </div>
       </div>
+      <div className="notification-image">
+        <img src="https://static.uacdn.net/thumbnail/banner/09d05e8f7f834010951842fdf0ac5b5c.png?q=75&w=1000&fm=webp" alt="" />
+      </div>
+
+      {/*.......Free Classes.........*/}
+
+      <div className="free-classes">
+        <div className="free-classes-header">
+          <div>
+            <h1>Free classes</h1>
+            <p>Watch free classes from top educators</p>
+          </div>
+          <div>
+            <a href="">See all</a>
+          </div>
+        </div>
+        <div className="free-classes-educators-list">
+        {freeClass.map((el, index) => {
+          return (
+            <div className="educator">
+              <div className="educator-image">
+                <img src={el.imageUrl} alt="" />
+              </div>
+              <div className="educator-details">
+                <p style={{fontSize:"12px", fontWeight:"600",color:"rgb(64, 64, 64)"}}> {el.language} <span style={{color:"rgb(224, 77, 77)", marginLeft:"1rem"}}> {el.subject} </span> </p>
+                <p style={{ fontWeight:"650", color:"rgb(64, 64, 64)"}}> {el.text} </p>
+                <p style={{fontSize:"13px", color:"grey"}}> {el.time} </p>
+                <p style={{}}> {el.name} </p>
+              </div>
+            </div>
+          )
+        })}
+        </div>
+      </div>
+
+      {/* .......Top Educators...... */}
+      
+      <div className="free-classes">
+        <div className="free-classes-header">
+            <div>
+              <h1>Prepare with Top Educators</h1>
+              <p>Access to India's best IIT-JAM educators is just a subscription away</p>
+            </div>
+            <div>
+              <a href="">See all</a>
+            </div>
+        </div>
+        <div className="top-educators-list">
+        {topEducator.map((el) => {
+          return (
+            <div className="educator">
+              <div className="topEducator-image">
+                <img src={el.imageUrl} alt="" />
+              </div>
+              <div className="educator-details">
+                <p style={{fontWeight:"650", color:"rgb(64, 64, 64)"}}> {el.name} </p>
+                <p style={{fontSize:"12px", fontWeight:"600",color:"rgb(64, 64, 64)"}}> {el.text} </p>
+              </div>
+            </div>
+          )
+        })}
+        </div>
+      </div>
+
       {/* .....Third Section... */}
       <section className="third-section">
         <div>
           <div className="third-section-first-box flex">
             <div className="third-section-first-box-item1">
-              <h1>The best way to prepare for Full Stack Development</h1>
+              <div>The best way to prepare for {goalData?.title}
+              <br />
+                <a href="/">Get subscription</a>
+              </div>
+              
             </div>
             <div className="third-section-first-box-item2">
               <video
@@ -212,14 +254,155 @@ export const Goal = () => {
                 Our educators teach in English, Hindi, Malayalam, Tamil and 12
                 other languages, so language is never a barrier
               </p>
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/practice_2202d81863.webm"
+                  type="video/webm"
+                  src="https://static.uacdn.net/web-cms/practice_2202d81863.webm"
+                />
+               
+              </video>
+              <h4>Learn anytime, anywhere</h4>
+              <p>Watch our recorded classes, online or offline from the comfort of your mobile, PC or tablet</p>
+            </div>
+          </div>
+          <div className="third-section-first-box flex">
+            <div className="third-section-first-box-item1">
+              <div>
+                Feels like you are in the classroom
+              <br />
+                <a href="/">Get subscription</a>
+              </div>
+              
+            </div>
+            <div className="third-section-first-box-item2">
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/polls_362dafb5eb.webm"
+                  type="video/webm"
+                  src="https://static.uacdn.net/web-cms/chatting_f25584317b.webm"
+                />
+               
+              </video>
+              <h4>Interact with your educator</h4>
+              <p>Chat with the educator, engage in discussions and ask your questions - all while the class is going on</p>
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/polls_362dafb5eb.webm"
+                  type="video/webm"
+                  src="https://static.uacdn.net/web-cms/polls_362dafb5eb.webm"
+                />
+               
+              </video>
+              <h4>Answer live polls</h4>
+              <p>Participate in live pools by the educator in class and compete for a place in the leaderboard</p>
+              
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/question_9baa1f946f.mp4"
+                  type="video/mp4"
+                  src="https://static.uacdn.net/web-cms/question_9baa1f946f.mp4"
+                />
+               
+              </video>
+              <h4>Get your doubts cleared</h4>
+              <p>Ask your doubts and get them answered immediately by the educator during classes</p>
+
+            </div>
+          </div>
+          <div className="third-section-first-box flex">
+            <div className="third-section-first-box-item1">
+              <div>
+              A subscription that's more than just classes
+              <br />
+                <a href="/">Get subscription</a>
+              </div>
+              
+            </div>
+            <div className="third-section-first-box-item2">
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/testseries_17b34f8aec.webm"
+                  type="video/webm"
+                  src="https://static.uacdn.net/web-cms/testseries_17b34f8aec.webm"
+                />
+               
+              </video>
+              <h4>Live tests and quizzes</h4>
+              <p>Take live mock tests curated in line with the exam pattern to measure your progress, and stay on track</p>
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/analytics_96e889f457.mp4"
+                  type="video/mp4"
+                  src="https://static.uacdn.net/web-cms/analytics_96e889f457.mp4"
+                />
+               
+              </video>
+              <h4>Detailed report and analysis</h4>
+              <p>Get in-depth insights with topic wise scores, time spent per question and competitive stats</p>
+              
+              <video
+                loop
+                muted
+                autoPlay
+                playsInline
+                className="css-fznx3g-Video eo1zmk14"
+              >
+                <source
+                  data-src="https://static.uacdn.net/web-cms/pdf_650d0a3977.webm"
+                  type="video/webm"
+                  src="https://static.uacdn.net/web-cms/pdf_650d0a3977.webm"
+                />
+               
+              </video>
+              <h4>PDFs and learning material</h4>
+              <p>Get access to class notes with educator annotations for you to revisit and revise anytime</p>
+
             </div>
           </div>
         </div>
       </section>
+      
       {/* .....Fourth Section... */}
       <section className="fourth-section">
         <div>
-          <h1>Full Stack Development Subscription</h1>
+          <h1>{goalData?.title} Subscription</h1>
           <div className="course-fee">
             <p>
               12 months <br /> ₹80,000 Total <br /> (Incl. of all taxes)
@@ -227,7 +410,7 @@ export const Goal = () => {
               <button>Subscription</button>
             </p>
           </div>
-          <h4>Have questions? Read our FAQs</h4>
+          <h4>Have questions? <a>Read our FAQs</a></h4>
         </div>
       </section>
       {/* .....Fifth Section... */}
