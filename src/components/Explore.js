@@ -52,7 +52,7 @@ export const Explore = () => {
                 </Box>
                 <Box display="flex" justifyContent="center" alignItems="center" width="100%" height="200px" position="relative" backgroundSize="100%" backgroundRepeat="no-repeat" backgroundImage="https://static.uacdn.net/production/_next/static/images/goal/managegoal-test-prep-light-new.svg">
                     <Heading>Choose Your Goal</Heading>
-                    <InputGroup position="absolute" background="white !important" bottom="-20px" width="550px" >
+                    <InputGroup position="absolute" background="white !important" bottom="-20px" width="28.5%" >
                         <InputLeftElement
                             pointerEvents='none'
                             children={<SearchIcon color='gray.600' />}
@@ -63,7 +63,7 @@ export const Explore = () => {
                         width="28.5%"
                         backgroundColor="white"
                         top="220px"
-                        left="682px"
+                        left="35.8%"
                         maxHeight="400px"
                         overflowY=" scroll"
                         zIndex="1"
