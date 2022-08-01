@@ -10,9 +10,9 @@ export function Subscription(){
     return(
         <ChakraProvider>
             <>
-            <Box mt = "20px" ml = "10%">
+            {/* <Box mt = "20px" ml = "10%">
                   <img src = "https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&w=256" alt = ""/>  
-            </Box>
+            </Box> */}
             <Box className = "parentBox">
                   <LeftSubscription/>
                   <RightSubscription/>

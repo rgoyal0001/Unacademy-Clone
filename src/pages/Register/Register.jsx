@@ -42,6 +42,7 @@ function Register() {
            return alert(res.error)
        }
       alert("Registration successful")
+      navigate('/login')
     })
     .catch(err=>{
         setError(true)
@@ -107,6 +108,7 @@ if(error){
 
 
   return (
+    // <ChakraProvider>
     <div className="register">
     <div className='left'>
       <form className='register-form' onSubmit={handleRegister}>
@@ -118,7 +120,8 @@ if(error){
         <input placeholder='Enter your email' type="text" name="username" value={email} onChange={(e)=>{setEmail(e.target.value)}}/> <br />
         <input placeholder='Create password' type="password" name="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/> <br />
         <div id='register-button' style={{"display":"flex","justifyContent":"space-between","alignItems":"center"}}>
-            <input type="submit" value="Register" />
+            <input type="submit" value="Register"/>
+            
         </div>
       </form>
     
@@ -153,7 +156,7 @@ if(error){
         </div>
     </div>
 
-    
+    // </ChakraProvider>
   )
 }
 

@@ -53,7 +53,7 @@ export const Goal = () => {
             Get Plus subscription and access unlimited live and recorded courses from India's best educators
 
             </h3>
-            <Link to="/plans">
+            <Link to={`/goal/subscription/${goalData?.title}`}>
               <button className="first-box-item2-2-btn">
                 Get subscription
               </button>
