@@ -23,9 +23,9 @@ import {Goals} from './pages/Goal/Goals';
 import Navbar from './components/Navbar';
 
 function App() {
-  return (
-     <ChakraProvider theme={theme}>
-       <Navbar/>
+  return (<>
+    <Navbar/>
+       
       <Routes>
         <Route path = "/"  element= {<Explore/>}></Route>
         <Route path='/login/phone' element={<Login />}></Route>
@@ -40,7 +40,7 @@ function App() {
 
       </Routes>
       
-      </ChakraProvider> 
+      </> 
   );
 }
 

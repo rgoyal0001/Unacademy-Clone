@@ -149,7 +149,7 @@ export const Goal = () => {
           </div>
         </div>
         <div className="free-classes-educators-list">
-        {freeClass.map((el, index) => {
+        {freeClass.map((el) => {
           return (
             <div className="educator">
               <div className="educator-image">
