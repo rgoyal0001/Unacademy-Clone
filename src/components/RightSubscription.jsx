@@ -106,7 +106,7 @@ export function RightSubscription(){
     }
 
 
-    function navigateToPayment(){
+    function navigateToPayment(){ 
      let token = localStorage.getItem("token")
 
      if(token){

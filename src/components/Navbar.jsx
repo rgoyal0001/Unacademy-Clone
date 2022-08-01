@@ -5,7 +5,7 @@ export default function Navbar(){
     return(
         <div style={{position:"sticky", top:"0", backgroundColor:"white",padding:"1rem"}}>
             <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
-                <img src="https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&w=256" alt="" />
+            <Link to="/"><img src="https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&w=256" alt="" /></Link>
                 <Link to="/login"> <button style={{border:"none",color:"white", backgroundColor:"#08BD80", padding:"8px 12px", borderRadius:"6px", cursor:"pointer"}}>Login</button>  </Link>
             </div>
         </div>
