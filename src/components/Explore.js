@@ -27,6 +27,16 @@ export const Explore = () => {
         })
         setSearchData(search);
     }
+    const debounce = () => {
+
+        let timerId;
+        return function (func) {
+            if (timerId)
+                clearTimeout(timerId);
+            setTimeout(func, 2000);
+        }
+    }
+    let debounc = debounce();
 
     React.useEffect(() => {
         (async () => {
@@ -51,7 +61,7 @@ export const Explore = () => {
                             pointerEvents='none'
                             children={<SearchIcon color='gray.600' />}
                         />
-                        <Input placeholder="Search for your goal" value={value} onBlur={() => { setTimeout(() => setOpenSearch(false), 500) }} onFocus={() => { setOpenSearch(true) }} onChange={(e) => { setValue(e.target.value); handleSearch() }} />
+                        <Input placeholder="Search for your goal" value={value} onBlur={() => { setTimeout(() => setOpenSearch(false), 500) }} onFocus={() => { setOpenSearch(true) }} onChange={(e) => { setValue(e.target.value); debounc(handleSearch) }} />
                     </InputGroup>
                     <Box position="absolute"
                         width="28.5%"
@@ -65,7 +75,7 @@ export const Explore = () => {
                         border={openSearch ? "0.05px solid grey" : "0"}
                     >{data.map((el, index) => {
                         return (
-                            <Link href={`/goal/${el.title}`}>
+                            <Link key={index} href={`/goal/${el.title}`}>
                                 <Box display="flex" justifyContent="space-between" alignItems="center"><Box display="flex"
                                     justifyContent="flex-start"
                                     alignItems="center"
