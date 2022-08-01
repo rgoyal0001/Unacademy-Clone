@@ -16,6 +16,7 @@ import Login from './pages/LogIn/login';
 import LoginEmail from './pages/LogIn/loginEmail';
 import Register from './pages/Register/Register';
 import {Goal} from './pages/Goal/Goal';
+import {Goals} from './pages/Goal/Goals';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
         <Route path='/login/phone' element={<Login />}></Route>
         <Route path='/login' element={<LoginEmail />}></Route>
         <Route path='/register' element={<Register />}></Route>
-        <Route path='/goal' element={<Goal />}></Route>
+        <Route path='/goals/full-stack-development' element={<Goals />}></Route>
+        <Route path='/goal/:title' element={<Goal />}></Route>
+
       </Routes>
     //  </ChakraProvider> 
   );
