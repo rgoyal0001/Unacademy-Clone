@@ -19,12 +19,14 @@ export default function Navbar() {
     React.useEffect(() => {
 
         if (token) {
+            
             const decoded_user = jwt_decode(token, SECRET);
             const { id, name, email, mobile } = decoded_user
             setUser({
                 id, name, email, mobile
             })
             setLogin(true);
+            window.location.reload();
 
         } else {
             setLogin(false);
