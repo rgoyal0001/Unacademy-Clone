@@ -10,6 +10,7 @@ export default function Navbar() {
     const [login, setLogin] = React.useState(false);
 
     let token = localStorage.getItem('token');
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const logout = () => {
         localStorage.removeItem('token');
@@ -24,13 +25,13 @@ export default function Navbar() {
             setUser({
                 id, name, email, mobile
             })
-            setLogin(true);
-
+            setLogin(true)
+          
         } else {
-            setLogin(false);
+            setLogin(false)
             console.log("token not found");
         }
-    }, [token, logout])
+    }, [token])
 
 
     return (
