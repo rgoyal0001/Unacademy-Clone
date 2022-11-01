@@ -10,7 +10,6 @@
 <li>Purchase any course</li>
 
 </ul>
-<h5> Deployed link : https://unacademy-explore-clone.netlify.app/</h5>
 <h5>Backend Repo Link: https://unacadmey-test-app.herokuapp.com/</h5>
 <br />
 <h3 align="center">Landing page</h3>
