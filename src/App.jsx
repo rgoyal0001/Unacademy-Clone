@@ -24,6 +24,10 @@ import { Goals } from './pages/Goal/Goals';
 import Navbar from './components/Navbar';
 
 function App() {
+  const displayAlert=()=>{
+    alert("There is some issue on the server side of this project. I am working on it.")
+  }
+  displayAlert()
   return (<>
     <Navbar />
 
