@@ -22,7 +22,8 @@ app.use(goalRouter);
 async function connectDatabase(){
 
     try{
-      let result = await mongoose.connect(process.env.DBURL)
+    //   let result = await mongoose.connect(process.env.DBURL)
+      let result = await mongoose.connect(`mongodb+srv://rgoyal0001:rgoyal@cluster0.ruo14tv.mongodb.net/?retryWrites=true&w=majority`)
     //    console.log(result)
       console.log("Connected")
 
@@ -54,8 +55,9 @@ function setReqContext(req, res, next) {
 
 const PORT = process.env.PORT || 8080
 
-connectDatabase().then(() => {
-    app.listen(PORT , () => {
+// connectDatabase().then(() => {
+    app.listen(PORT , async () => {
+       await  connectDatabase()
         console.log(`server is listening at ${PORT}`)
     })
-})
+// })
