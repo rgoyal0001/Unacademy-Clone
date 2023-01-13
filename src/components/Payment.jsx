@@ -40,19 +40,19 @@ export function Payment() {
   const navigate = useNavigate();
 
   let token = localStorage.getItem('token');
-  //   async function getUserById(id){
-  //       try {  
-  //       let res = await fetch(`https://unacadmey-test-app.herokuapp.com/getUser/${id}`);
-  //         let data = await res.json();
-  //            return data
-  //       }catch(err){
-  //           console.log(err);
-  //       }
-  //   }
+    // async function getUserById(id){
+    //     try {  
+    //     let res = await fetch(`https://unacademy-clone.onrender.com/getUser/${id}`);
+    //       let data = await res.json();
+    //          return data
+    //     }catch(err){
+    //         console.log(err);
+    //     }
+    // }
 
   async function updateSubscription(id, body) {
     setLoading(true);
-    await fetch(`https://unacadmey-test-app.herokuapp.com/userSubscription/${id}`, {
+    await fetch(`https://unacademy-clone.onrender.com/userSubscription//${id}`, {
       method: "PATCH",
       body: JSON.stringify(body),
       headers: {

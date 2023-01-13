@@ -41,8 +41,10 @@ export const Explore = () => {
     React.useEffect(() => {
         (async () => {
             try {
-                let res = await fetch('https://unacadmey-test-app.herokuapp.com/courses');
+                // let res = await fetch('http://localhost:8080/courses');
+                let res = await fetch('https://unacademy-clone.onrender.com/courses');
                 res = await res.json();
+                // console.log(res)
                 setCategory(res.course);
                 console.log(category);
             } catch (error) {

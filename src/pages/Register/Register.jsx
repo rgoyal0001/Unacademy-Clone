@@ -10,7 +10,7 @@ async function register(body) {
     user: body
   });
   const response = await fetch(
-    `https://unacadmey-test-app.herokuapp.com/register`, {
+    `https://unacademy-clone.onrender.com/register`, {
       method: 'POST',
       headers: {
         'Content-Type': "application/json"

@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 import "./Goal.css";
 
 async function getGoal(title){
-  const response=await fetch(`https://unacadmey-test-app.herokuapp.com/goal/${title}`)
+  const response=await fetch(`https://unacademy-clone.onrender.com/goal/${title}`)
   .catch((err)=>{
     console.log(err)
   });
@@ -32,7 +32,7 @@ export const Goal = () => {
 
        async function getUserById(id){
         try {  
-        let res = await fetch(`https://unacadmey-test-app.herokuapp.com/getUser/${id}`);
+        let res = await fetch(`https://unacademy-clone.onrender.com/getUser/${id}`);
           let data = await res.json();
              let subscription = data.user.subscription.filter((eachSub)=> {
                 return eachSub.title === params.title

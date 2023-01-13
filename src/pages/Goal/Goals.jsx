@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import "./Goal.css";
 
 async function getGoal(title){
-  const response=await fetch(`https://unacadmey-test-app.herokuapp.com/goal/${title}`)
+  const response=await fetch(`https://unacademy-clone.onrender.com/${title}`)
   .catch((err)=>{
     console.log(err)
   });

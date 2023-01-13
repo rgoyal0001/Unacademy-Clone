@@ -13,7 +13,7 @@ export function SeeSubscription(){
   
          async function getUserById(id){
           try {  
-          let res = await fetch(`https://unacadmey-test-app.herokuapp.com/getUser/${id}`);
+          let res = await fetch(`https://https://unacademy-clone.onrender.com/getUser/${id}`);
             let data = await res.json();
                let subscription = data.user.subscription.filter((eachSub)=> {
                     return eachSub.title === params.title

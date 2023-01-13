@@ -38,7 +38,7 @@ export default function Navbar() {
     return (
         <div style={{ position: "sticky", top: "0", backgroundColor: "white", padding: "1rem", zIndex: "2", boxShadow: "inset 0px -1px 0px rgba(233, 238, 242, 0.4)" }}>
             <div style={{ display: "flex", width: "1200px", margin: "auto", marginInline: "auto", backgroundColor: "transparent", justifyContent: "space-between", alignItems: "center" }}>
-                <img src="https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&w=256" alt="" />
+                <Link to="/"><img src="https://static.uacdn.net/production/_next/static/images/logo.svg?q=75&w=256" alt="" /></Link>
                 <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}><p style={{ paddingRight: "15px", fontWeight: "bold", fontSize: "20px", color: "#696969" }}>{user.name}</p><Link to="/login"> <button onClick={logout} style={{ border: "none", color: "white", backgroundColor: "#08BD80", padding: "8px 12px", borderRadius: "6px", cursor: "pointer" }}>{login ? "Logout" : "login"}</button></Link></div>
             </div>
         </div>

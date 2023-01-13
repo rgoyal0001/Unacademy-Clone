@@ -30,7 +30,7 @@ function Login() {
     }
     // console.log(body);
     try {
-      let data = await fetch('https://unacadmey-test-app.herokuapp.com/login',{
+      let data = await fetch('https://unacademy-clone.onrender.com/login',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
